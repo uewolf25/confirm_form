@@ -1,0 +1,13 @@
+ex.md
+研究発表.js
+.env
+
+.DS_Store
+.clasp.json
+package.json
+package-lock.json
+/node_modules
+URL_data.txt
+
+Synchronize.*
+template(改良中).js
