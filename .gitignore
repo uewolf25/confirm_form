@@ -1,5 +1,4 @@
 ex.md
-研究発表.js
 .env
 
 .DS_Store
@@ -10,4 +9,5 @@ package-lock.json
 URL_data.txt
 
 Synchronize.*
-template(改良中).js
+practice.js
+tem_use.js

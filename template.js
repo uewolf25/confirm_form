@@ -1,13 +1,16 @@
 /*
 ** @author : Yuto Uemura
-** @date : 3/8
-**＜テンプレ用＞ 
+** @date : 4/3
+**  ＜テンプレ用＞  
 */
+
+var GOOGLE_FORM_URL = '',
+    // SPREADSHEET_URL = '',
+    SHEET_TITLE = '';
     
-    // googleフォーム
-var googleForm = FormApp.openByUrl(GOOGLE_FORM_URL),
+var GOOGLE_FORM = FormApp.openByUrl(GOOGLE_FORM_URL),
     // スプレッドシート(部員には見せない)。
-    formSpreadSheet = SpreadsheetApp.openByUrl(SPREADSHEET_URL), //URL(form)のオブジェクトを取得。
+    // SPREADSHEET_OF_FORM = SpreadsheetApp.openByUrl(SPREADSHEET_URL).getSheets()[0], //URL(form)のオブジェクトを取得。
     //部員に見せるスプレッドシート。(公開用)
     SPREADSHEET_FOR_CAC_MEMBERS = SpreadsheetApp.openByUrl(''),
     //部員の名前が書かれたシートのURL。(参照用)
@@ -22,15 +25,14 @@ try {
 }
 
 var formSheets = SPREADSHEET_FOR_CAC_MEMBERS.getSheetByName(SHEET_TITLE);
-    //Logger.log(formSheets.getName() + " : " + typeof(formSheets.getName()));
-
-//これで回答の取り出し。
-// var itemResponses = FormApp.openByUrl(url).getResponses()[num].getItemResponses()[num].getResponse()
 
 var nameHash = {}, //Dictionaryの初期化
     cacArray = [], //部員一覧を格納するための配列の初期化
-    color = {red: '#FF0000', green: '#00FF00', white: '#FFFFFF'};
-
+    color = {
+      red: '#FF0000', 
+      green: '#00FF00', 
+      white: '#FFFFFF'
+    };
 /**************************************************ここから**************************************************/
 
 /* スプレッドシートの読み込み */
@@ -44,19 +46,11 @@ function copyAndPaste(){
   cacArray = Array.prototype.concat.apply([], cacMember); //2次元から1次元配列へ
 
   printData();
-
-  // for(var index in cacArray){
-  //   if(cacArray[index] == ""){
-  //     cacArray.splice(index, 1); //配列内の空白の削除
-  //   }
-  // }
-  // Logger.log(cacArray); //配列内にnullを消した状態で格納してる。
 }
 
 /* タイトルの取得 */
 function printData(){
-//   var titles = googleForm.getItems();
-  var formResponses = googleForm.getResponses();
+  var formResponses = GOOGLE_FORM.getResponses();
   
   for(var items in formResponses){
     var formRes = formResponses[items],
@@ -75,25 +69,24 @@ function printData(){
 
 /* 初期化とデータの格納 */
 function putData(name){ //配列形式で渡す
-  //{'名前': false}
-  nameHash[name] = false; //全てのユーザの真偽値をfalseに。
+  //{'名前': true}
+  name = name.replace( /\s+/g, "" ); //名前間に空白があった場合、削除される。
+  nameHash[name] = true; //全てのユーザの真偽値をtrueに。
+  // manual('');
 }
 
 function judge(){
   var count = 0; //行番号
 
   for(var index in cacArray){
-        //名前がないとき、undefinedが帰って!を付けてもfalseと一緒にelseに入ってしまうため==falseにしている。
-      if( nameHash[ cacArray[index] ] == false ){
+      if( nameHash[ cacArray[index] ] ){
         decorateGreen( formSheets.getRange(count+1, 3) ); //飾り
       }else if(cacArray[index] == "" || cacArray[index] == null){
         decorateWhite( formSheets.getRange(count+1, 3) ); //飾り
       }else{
         decorateRed( formSheets.getRange(count+1, 3) ); //飾り
       }
-    //}
     count++;
-    //manual('C40');
   }
 }
 
@@ -113,7 +106,7 @@ function decorateWhite(sheetRange){
     sheetRange.setBackground(color.white); //飾り
 }
 
-/* 手動用関数 
-function manual(cell1){
-  decorateGreen( formSheets.getRange(cell1) );
-}*/
+/* 手動用関数 */
+function manual(errorName){
+  nameHash[errorName] = true;
+}
