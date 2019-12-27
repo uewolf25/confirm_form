@@ -1,13 +1,25 @@
-ex.md
-.env
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
-.DS_Store
+# Dependency directories
+node_modules/
+
+# Editor
+.idea/
+.vscode/
+.editorconfig
+
+# Build directory
+dist/
+
+# Dust Box
+dust/
+.DS_Store*
+
+# private informations
 .clasp.json
-package.json
-package-lock.json
-/node_modules
-URL_data.txt
-
-Synchronize.*
-practice.js
-tem_use.js
+appsscript.json
