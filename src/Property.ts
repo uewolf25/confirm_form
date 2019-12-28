@@ -33,8 +33,8 @@ export class Property {
     return this._sheetMenbers;
   }
 
-  get getEventName(): number {
-    return Number(this._eventTitle);
+  get getEventName(): string {
+    return this._eventTitle;
   }
 
   private alert() {
