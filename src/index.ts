@@ -1,8 +1,10 @@
-// import { SheetService } from './sheet.service';
+import { Property } from './property';
+import { SetFormAndSheetData } from './SetFormAndSheetData';
+
 // main
 declare var global: any;
 
 global.caconfirm = (): void => {
-  // const ss = SheetService.createInitialFile('New file');
-  // ss.getRange('A2').setValue('Happy gas!');
+  const prop: Property = new Property();
+  const setData: SetFormAndSheetData = new SetFormAndSheetData(prop);
 };
