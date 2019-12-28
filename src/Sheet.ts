@@ -1,12 +1,20 @@
 import Spreadsheet = GoogleAppsScript.Spreadsheet.Spreadsheet;
-import { getDayFormat } from './util';
+import SheetsApp = GoogleAppsScript.Spreadsheet.SpreadsheetApp;
 
-export class SheetService {
-  static createInitialFile(prefix: string): Spreadsheet {
-    const fileName = `${prefix} ${getDayFormat()}`;
-    const ss = SpreadsheetApp.create(fileName);
-    const range = ss.getRange('A1');
-    range.setValue('Hello, clasp!');
-    return ss;
+export class Sheet extends AbstractOpen {
+
+  protected sheetsUrlForEveryone: string;
+  protected sheetsUrlMenbers: string;
+
+  constructor(sheetsUrlForEveryone: string, sheetsUrlMenbers: string) {
+    super(sheetsUrlForEveryone);
+    this.sheetsUrlMenbers = sheetsUrlMenbers;
+  }
+
+  /**
+   * openApps
+   */
+  protected openApps(object: SheetsApp) {
+    let appsObject: Object = object.openByUrl(this.url);
   }
 }
