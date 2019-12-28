@@ -11,7 +11,6 @@ node_modules/
 # Editor
 .idea/
 .vscode/
-.editorconfig
 
 # Build directory
 dist/
@@ -23,3 +22,6 @@ dust/
 # private informations
 .clasp.json
 appsscript.json
+
+# private Directory
+astah/
