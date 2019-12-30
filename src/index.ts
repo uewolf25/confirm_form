@@ -8,14 +8,15 @@ declare var global: any;
 global.caconfirm = (): void => {
   const prop: Property = new Property();
   const setData: SetFormAndSheetData = new SetFormAndSheetData(prop);
+  setData.debugMethod();
   const formData: Form = new Form(prop.getForm);
-  try {
-    ScriptApp.newTrigger('initialize')
-      .forForm(formData.openApps(FormApp))
-      .onFormSubmit()
-      .create();
-    Logger.log('successly create trigger .');
-  } catch (error) {
-    Logger.log('Miss: cannot set trigger');
-  }
+  // try {
+  //   ScriptApp.newTrigger('initialize')
+  //     .forForm(formData.openApps())
+  //     .onFormSubmit()
+  //     .create();
+  //   Logger.log('successly create trigger .');
+  // } catch (error) {
+  //   Logger.log('Miss: cannot set trigger');
+  // }
 };
