@@ -8,14 +8,21 @@ export class Sheet /*extends AbstractOpen*/ {
   private _sheetsForEveryoneObject: Spreadsheet;
   private _sheetsMenbersObject: Spreadsheet;
 
+  private _sheetForEveryone: Sheets[]; // sheet for publication
+  private _sheetSize: number; // sheet for publication of size
+  private _sheetsName: Sheets; // sheet for publication of name
+  private _sheetMenbers: Sheets[]; // menbers sheet
+
   public constructor(sheetsUrlForEveryone: string, sheetsUrlMenbers: string) {
     this.sheetsUrlForEveryone = sheetsUrlForEveryone;
     // super(sheetsUrlForEveryone);
     this.sheetsUrlMenbers = sheetsUrlMenbers;
+    this.openApps();
+    this.initialize();
   }
 
   /**
-   * openApps
+   * openApps: create App object .
    * @param
    * @returns
    */
@@ -25,38 +32,33 @@ export class Sheet /*extends AbstractOpen*/ {
   }
 
   /**
-   * getForEveryoneSheet
+   * initialize: Initialize field value .
    * @param
    * @returns
    */
-  private get getForEveryoneSheet(): Sheets[] {
-    return this._sheetsForEveryoneObject.getSheets();
+  private initialize() {
+    this._sheetForEveryone = this._sheetsForEveryoneObject.getSheets();
+    this._sheetSize = this._sheetForEveryone.length;
+    this._sheetMenbers = this._sheetsMenbersObject.getSheets();
   }
 
   /**
-   * getForEveryoneSheetSize
+   * setForEveryoneSheetName: Set sheet name{eventTitle} .
    * @param
-   * @returns
    */
-  private get getForEveryoneSheetSize(): Number {
-    return this.getForEveryoneSheet.length;
+  public setForEveryoneSheetName(eventTitle: string) {
+    this._sheetsName = this._sheetsForEveryoneObject.getSheetByName(eventTitle);
+    Logger.log(this._sheetsName);
   }
 
   /**
-   * getForEveryoneSheetName
-   * @param
-   * @returns
+   * insertSheets: Insert new sheet .
    */
-  public getForEveryoneSheetName(sheetTitle: string): Sheets {
-    return this._sheetsForEveryoneObject.getSheetByName(sheetTitle);
-  }
-
-  /**
-   * getMenbersSheet
-   * @param
-   * @returns
-   */
-  private get getMenbersSheet(): Sheets[] {
-    return this._sheetsMenbersObject.getSheets();
+  public insertSheets(eventTitle: string) {
+    try {
+      SpreadsheetApp.openByUrl(this.sheetsUrlForEveryone).insertSheet(eventTitle, this._sheetSize);
+    } catch (error) {
+      Logger.log(`エラー：${eventTitle}はシートに挿入できません。${error}`);
+    }
   }
 }
