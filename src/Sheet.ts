@@ -2,14 +2,15 @@ import Spreadsheet = GoogleAppsScript.Spreadsheet.Spreadsheet;
 import Sheets = GoogleAppsScript.Spreadsheet.Sheet;
 // import SheetsApp = GoogleAppsScript.Spreadsheet.SpreadsheetApp;
 
-export class Sheet extends AbstractOpen {
+export class Sheet /*extends AbstractOpen*/ {
   protected sheetsUrlForEveryone: string;
   protected sheetsUrlMenbers: string;
   private _sheetsForEveryoneObject: Spreadsheet;
   private _sheetsMenbersObject: Spreadsheet;
 
   public constructor(sheetsUrlForEveryone: string, sheetsUrlMenbers: string) {
-    super(sheetsUrlForEveryone);
+    this.sheetsUrlForEveryone = sheetsUrlForEveryone;
+    // super(sheetsUrlForEveryone);
     this.sheetsUrlMenbers = sheetsUrlMenbers;
   }
 

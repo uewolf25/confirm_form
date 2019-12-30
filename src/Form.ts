@@ -1,9 +1,11 @@
 import Forms = GoogleAppsScript.Forms.Form;
 // import FormsApp = GoogleAppsScript.Forms.FormApp;
 
-export class Form extends AbstractOpen {
+export class Form /*extends AbstractOpen*/ {
+  private url: string;
   public constructor(formUrl: string) {
-    super(formUrl);
+    this.url = formUrl;
+    // super(formUrl);
   }
 
   /**
@@ -12,7 +14,7 @@ export class Form extends AbstractOpen {
    * @returns
    */
   public openApps(): Forms {
-    const appsObject: Forms = FormApp.openByUrl(this.url);
-    return appsObject;
+    const FormObject: Forms = FormApp.openByUrl(this.url);
+    return FormObject;
   }
 }
