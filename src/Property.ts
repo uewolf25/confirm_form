@@ -8,7 +8,7 @@ export class Property {
   private _sheetMenbers: string;
   private _eventTitle: string;
 
-  constructor() {
+  public constructor() {
     this._form = this._properteis.getProperty('GF_URL');
     // this._sheet = this._properteis.getProperty('SS_URL');
     this._sheetForEveryone = this._properteis.getProperty('SS_FOR_EVERYONE_URL');
