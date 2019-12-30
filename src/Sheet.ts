@@ -1,11 +1,14 @@
 import Spreadsheet = GoogleAppsScript.Spreadsheet.Spreadsheet;
-import SheetsApp = GoogleAppsScript.Spreadsheet.SpreadsheetApp;
+import Sheets = GoogleAppsScript.Spreadsheet.Sheet;
+// import SheetsApp = GoogleAppsScript.Spreadsheet.SpreadsheetApp;
 
 export class Sheet extends AbstractOpen {
   protected sheetsUrlForEveryone: string;
   protected sheetsUrlMenbers: string;
+  private _sheetsForEveryoneObject: Spreadsheet;
+  private _sheetsMenbersObject: Spreadsheet;
 
-  constructor(sheetsUrlForEveryone: string, sheetsUrlMenbers: string) {
+  public constructor(sheetsUrlForEveryone: string, sheetsUrlMenbers: string) {
     super(sheetsUrlForEveryone);
     this.sheetsUrlMenbers = sheetsUrlMenbers;
   }
@@ -15,8 +18,44 @@ export class Sheet extends AbstractOpen {
    * @param
    * @returns
    */
-  public openApps(object: SheetsApp): Spreadsheet {
-    const appsObject: Spreadsheet = object.openByUrl(this.url);
-    return appsObject;
+  public openApps() {
+    this._sheetsForEveryoneObject = SpreadsheetApp.openByUrl(this.sheetsUrlForEveryone);
+    this._sheetsMenbersObject = SpreadsheetApp.openByUrl(this.sheetsUrlForEveryone);
+  }
+
+  /**
+   * getForEveryoneSheet
+   * @param
+   * @returns
+   */
+  private get getForEveryoneSheet(): Sheets[] {
+    return this._sheetsForEveryoneObject.getSheets();
+  }
+
+  /**
+   * getForEveryoneSheetSize
+   * @param
+   * @returns
+   */
+  private get getForEveryoneSheetSize(): Number {
+    return this.getForEveryoneSheet.length;
+  }
+
+  /**
+   * getForEveryoneSheetName
+   * @param
+   * @returns
+   */
+  public getForEveryoneSheetName(sheetTitle: string): Sheets {
+    return this._sheetsForEveryoneObject.getSheetByName(sheetTitle);
+  }
+
+  /**
+   * getMenbersSheet
+   * @param
+   * @returns
+   */
+  private get getMenbersSheet(): Sheets[] {
+    return this._sheetsMenbersObject.getSheets();
   }
 }
