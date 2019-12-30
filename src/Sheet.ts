@@ -2,7 +2,6 @@ import Spreadsheet = GoogleAppsScript.Spreadsheet.Spreadsheet;
 import SheetsApp = GoogleAppsScript.Spreadsheet.SpreadsheetApp;
 
 export class Sheet extends AbstractOpen {
-
   protected sheetsUrlForEveryone: string;
   protected sheetsUrlMenbers: string;
 
@@ -13,8 +12,11 @@ export class Sheet extends AbstractOpen {
 
   /**
    * openApps
+   * @param
+   * @returns
    */
-  protected openApps(object: SheetsApp) {
-    let appsObject: Object = object.openByUrl(this.url);
+  public openApps(object: SheetsApp): Spreadsheet {
+    const appsObject: Spreadsheet = object.openByUrl(this.url);
+    return appsObject;
   }
 }

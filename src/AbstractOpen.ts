@@ -1,7 +1,6 @@
 import FormsApp = GoogleAppsScript.Forms.FormApp;
 import SheetsApp = GoogleAppsScript.Spreadsheet.SpreadsheetApp;
 abstract class AbstractOpen {
-
   protected url: string;
 
   constructor(url: string) {
@@ -11,5 +10,5 @@ abstract class AbstractOpen {
   /**
    * openApps
    */
-  protected abstract openApps(object: FormsApp | SheetsApp): void;
+  public abstract openApps(object: FormsApp | SheetsApp): Object;
 }
