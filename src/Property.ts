@@ -17,23 +17,23 @@ export class Property {
     this.alert();
   }
 
-  get getForm(): string {
+  public get getForm(): string {
     return this._form;
   }
 
-  // get getSheet(): string {
+  // public get getSheet(): string {
   //   return this._sheet;
   // }
 
-  get getSheetForEveryone(): string {
+  public get getSheetForEveryone(): string {
     return this._sheetForEveryone;
   }
 
-  get getSheetMenbers(): string {
+  public get getSheetMenbers(): string {
     return this._sheetMenbers;
   }
 
-  get getEventName(): string {
+  public get getEventName(): string {
     return this._eventTitle;
   }
 
