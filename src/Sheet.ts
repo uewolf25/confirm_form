@@ -1,6 +1,5 @@
 import Spreadsheet = GoogleAppsScript.Spreadsheet.Spreadsheet;
 import Sheets = GoogleAppsScript.Spreadsheet.Sheet;
-// import SheetsApp = GoogleAppsScript.Spreadsheet.SpreadsheetApp;
 
 export class Sheet /*extends AbstractOpen*/ {
   protected sheetsUrlForEveryone: string;
