@@ -4,8 +4,9 @@ import { Sheet } from './Sheet';
 
 export class SetFormAndSheetData {
   private _prop: Property;
-  // private _form: Form;
+  private _form: Form;
   private _sheet: Sheet;
+  private answeredMenber: { [key: string]: boolean } = {};
 
   public constructor(prop: Property) {
     this._prop = prop;
@@ -13,7 +14,7 @@ export class SetFormAndSheetData {
   }
 
   private initialize(prop: Property) {
-    // this._form = new Form(prop.getForm);
+    this._form = new Form(prop.getForm);
     this._sheet = new Sheet(prop.getSheetForEveryone, prop.getSheetMenbers);
   }
 
@@ -23,7 +24,9 @@ export class SetFormAndSheetData {
    * @returns
    */
   public debugMethod() {
-    Logger.log(`${typeof this._sheet}型です。`);
-    // this._sheet.getForEveryoneSheetName('sample');
+    // this._sheet.setForEveryoneSheetName(this._prop.getEventName);
+    // this._sheet.insertSheets(this._prop.getEventName);
+    this.answeredMenber = this._form.getTitle(this.answeredMenber);
+    Logger.log(this.answeredMenber);
   }
 }
