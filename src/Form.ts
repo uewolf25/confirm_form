@@ -14,7 +14,7 @@ export class Form /*extends AbstractOpen*/ {
   }
 
   /**
-   * initialize
+   * - initialize Form objects .
    */
   private initialize() {
     this._formObject = this.openApps();
@@ -22,9 +22,8 @@ export class Form /*extends AbstractOpen*/ {
   }
 
   /**
-   * openApps
-   * @param
-   * @returns
+   * - Create Form object(FormApp) by setting form URL .
+   * @returns FormObject
    */
   public openApps(): Forms {
     const FormObject: Forms = FormApp.openByUrl(this.url);
@@ -32,8 +31,8 @@ export class Form /*extends AbstractOpen*/ {
   }
 
   /**
-   * getTitle
-   * @param
+   * - Get any properties(ex. 学生証番号) from Form .
+   * @param answeredMenber key->student number: string, value-> true or false: boolean
    * @returns
    */
   public getTitle(answeredMenber: { [key: string]: boolean }) {

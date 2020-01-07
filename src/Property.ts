@@ -17,33 +17,45 @@ export class Property {
     this.alert();
   }
 
+  /**
+   * - Get Form URL from 'GF_URL' property .
+   * @returns this._form : Google form URL
+   */
   public get getForm(): string {
     return this._form;
   }
 
-  // public get getSheet(): string {
-  //   return this._sheet;
-  // }
-
+  /**
+   * - Get SpreadSheet URL from 'SS_FOR_EVERYONE_URL' property .
+   * @returns this._sheetForEveryone : SpreadSheet for everyone form URL
+   */
   public get getSheetForEveryone(): string {
     return this._sheetForEveryone;
   }
 
+  /**
+   * - Get SpreadSheet URL from 'SS_MENBERS_URL' property .
+   * @returns this._sheetMenbers : SpreadSheet(register of names) form URL
+   */
   public get getSheetMenbers(): string {
     return this._sheetMenbers;
   }
 
+  /**
+   * - Get event name from 'EVENT_TITLE' property .
+   * @returns this._eventTitle : event name
+   */
   public get getEventName(): string {
     return this._eventTitle;
   }
 
+  /**
+   * - Notice that is not set URLs or event name .
+   */
   private alert() {
     if (!this._form) {
       throw 'You should set "GF_URL" property from [File] > [Project properties] > [Script properties]';
     }
-    // if (!this._sheet) {
-    //   throw 'You should set "SS_URL" property from [File] > [Project properties] > [Script properties]';
-    // }
     if (!this._sheetForEveryone) {
       throw 'You should set "SS_FOR_EVERYONE_URL" property from [File] > [Project properties] > [Script properties]';
     }

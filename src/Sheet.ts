@@ -21,9 +21,7 @@ export class Sheet /*extends AbstractOpen*/ {
   }
 
   /**
-   * openApps: create App object .
-   * @param
-   * @returns
+   * - Create App object .
    */
   public openApps() {
     this._sheetsForEveryoneObject = SpreadsheetApp.openByUrl(this.sheetsUrlForEveryone);
@@ -31,9 +29,7 @@ export class Sheet /*extends AbstractOpen*/ {
   }
 
   /**
-   * initialize: Initialize field value .
-   * @param
-   * @returns
+   * - Initialize field value .
    */
   private initialize() {
     this._sheetForEveryone = this._sheetsForEveryoneObject.getSheets();
@@ -42,7 +38,7 @@ export class Sheet /*extends AbstractOpen*/ {
   }
 
   /**
-   * setForEveryoneSheetName: Set sheet name{eventTitle} .
+   * - Set sheet name{eventTitle} .
    * @param
    */
   public setForEveryoneSheetName(eventTitle: string) {
@@ -51,7 +47,7 @@ export class Sheet /*extends AbstractOpen*/ {
   }
 
   /**
-   * insertSheets: Insert new sheet .
+   * - Insert new sheet .
    */
   public insertSheets(eventTitle: string) {
     try {
