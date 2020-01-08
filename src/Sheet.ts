@@ -25,7 +25,7 @@ export class Sheet /*extends AbstractOpen*/ {
    */
   public openApps() {
     this._sheetsForEveryoneObject = SpreadsheetApp.openByUrl(this.sheetsUrlForEveryone);
-    this._sheetsMenbersObject = SpreadsheetApp.openByUrl(this.sheetsUrlForEveryone);
+    this._sheetsMenbersObject = SpreadsheetApp.openByUrl(this.sheetsUrlMenbers);
   }
 
   /**
@@ -34,6 +34,7 @@ export class Sheet /*extends AbstractOpen*/ {
   private initialize() {
     this._sheetForEveryone = this._sheetsForEveryoneObject.getSheets();
     this._sheetSize = this._sheetForEveryone.length;
+    /* You should change sheet index when a menbers list was updated . And this is Array type . */
     this._sheetMenbers = this._sheetsMenbersObject.getSheets();
   }
 
@@ -43,11 +44,12 @@ export class Sheet /*extends AbstractOpen*/ {
    */
   public setForEveryoneSheetName(eventTitle: string) {
     this._sheetsName = this._sheetsForEveryoneObject.getSheetByName(eventTitle);
-    Logger.log(this._sheetsName);
+    // Logger.log(this._sheetsName);
   }
 
   /**
    * - Insert new sheet .
+   * @param eventTitle event name
    */
   public insertSheets(eventTitle: string) {
     try {
@@ -55,5 +57,16 @@ export class Sheet /*extends AbstractOpen*/ {
     } catch (error) {
       Logger.log(`エラー：${eventTitle}はシートに挿入できません。${error}`);
     }
+  }
+
+  /**
+   * - Get
+   */
+  public getSheetData() {
+    this._sheetMenbers = this._sheetsMenbersObject.getSheets();
+    Logger.log(this._sheetMenbers + ' : ' + this._sheetMenbers[1].getName());
+    const allMenbers: number = this._sheetMenbers[0].getLastRow();
+    // let getNameFromSheet = this._sheetsName.getRange('A1:B5').getValues();
+    Logger.log(allMenbers);
   }
 }
