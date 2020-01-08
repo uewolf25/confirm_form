@@ -63,9 +63,14 @@ export class Sheet /*extends AbstractOpen*/ {
    * - Get
    */
   public getSheetData() {
-    // Logger.log(this._sheetMenbers + ' : ' + this._sheetMenbers[1].getName());
+    // Get Sheet(registered menbers) length = How many people .
     const allMenbers: number = this._sheetMenbers[1].getLastRow();
-    let getNameFromSheet = this._sheetMenbers[1].getRange(`A1:B${allMenbers}`).getValues();
-    Logger.log(getNameFromSheet);
+    // Get data of cell from A to B .
+    let getNameFromSheet: string[][] = this._sheetMenbers[1]
+      .getRange(`A1:B${allMenbers}`)
+      .getValues();
+    // copy from sheetMenbers(registered menbers) to sheetsName(to show everyone)
+    this._sheetsName.getRange(`A1:B${allMenbers}`).setValues(getNameFromSheet);
+    // Logger.log(getNameFromSheet);
   }
 }
