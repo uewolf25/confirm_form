@@ -63,10 +63,9 @@ export class Sheet /*extends AbstractOpen*/ {
    * - Get
    */
   public getSheetData() {
-    this._sheetMenbers = this._sheetsMenbersObject.getSheets();
-    Logger.log(this._sheetMenbers + ' : ' + this._sheetMenbers[1].getName());
-    const allMenbers: number = this._sheetMenbers[0].getLastRow();
-    // let getNameFromSheet = this._sheetsName.getRange('A1:B5').getValues();
-    Logger.log(allMenbers);
+    // Logger.log(this._sheetMenbers + ' : ' + this._sheetMenbers[1].getName());
+    const allMenbers: number = this._sheetMenbers[1].getLastRow();
+    let getNameFromSheet = this._sheetMenbers[1].getRange(`A1:B${allMenbers}`).getValues();
+    Logger.log(getNameFromSheet);
   }
 }
