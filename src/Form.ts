@@ -1,6 +1,7 @@
 import Forms = GoogleAppsScript.Forms.Form;
 import FormsResponse = GoogleAppsScript.Forms.FormResponse;
 import FormItemResponse = GoogleAppsScript.Forms.ItemResponse;
+import { Check } from './Check';
 
 export class Form /*extends AbstractOpen*/ {
   private url: string; // Google Form URL with editing authority via Property Class .
@@ -32,10 +33,11 @@ export class Form /*extends AbstractOpen*/ {
 
   /**
    * - Get any properties(ex. 学生証番号) from Form .
-   * @param answeredMenber key->student number: string, value-> true or false: boolean
+   * @param answeredMenber key->studentnumber: string, value-> true or false: boolean
    * @returns
    */
   public getTitle(answeredMenber: { [key: string]: boolean }) {
+    const checker: Check = new Check();
     for (let items in this._formResponses) {
       let itemResponse: FormItemResponse[] = this._formResponses[items].getItemResponses();
 
@@ -44,15 +46,14 @@ export class Form /*extends AbstractOpen*/ {
         let formColumnTitle: string = studentNumberList.getItem().getTitle();
 
         if (formColumnTitle.match('学生番号') || formColumnTitle.match('学生証番号')) {
-          // let str = String(studentNumberList.getResponse());
+          let studentNumbers = String(studentNumberList.getResponse());
           // ↓　Probably, it is hard for this editor to judge what class type is .
           // answeredMenber[studentNumberList.getResponse()] = true;
-          answeredMenber[String(studentNumberList.getResponse())] = true;
+          answeredMenber[studentNumbers] = checker.numberCheck(studentNumbers);
           continue;
         }
       }
     }
-    // Logger.log(answeredMenber);
     return answeredMenber;
   }
 }
