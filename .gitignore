@@ -25,3 +25,6 @@ appsscript.json
 
 # private Directory
 astah/
+
+# src folder
+src/Zip.ts
