@@ -32,9 +32,9 @@ export class Form /*extends AbstractOpen*/ {
   }
 
   /**
-   * - Get any properties(ex. 学生証番号) from Form .
+   * - Get any properties(ex. student number) from Form .
    * @param answeredMenber key->studentnumber: string, value-> true or false: boolean
-   * @returns
+   * @returns answeredMenber same parameter
    */
   public getTitle(answeredMenber: { [key: string]: boolean }) {
     const checker: Check = new Check();
