@@ -40,11 +40,27 @@ export class Sheet /*extends AbstractOpen*/ {
 
   /**
    * - Set sheet name{eventTitle} .
-   * @param
+   * @param eventTitle event name
    */
   public setForEveryoneSheetName(eventTitle: string) {
     this._sheetsName = this._sheetsForEveryoneObject.getSheetByName(eventTitle);
     // Logger.log(this._sheetsName);
+  }
+
+  /**
+   * - Get sheet for everyone .
+   * @returns this._sheetsName Sheets
+   */
+  public getForEveryoneSheet() {
+    return this._sheetsName;
+  }
+
+  /**
+   * - Get sheet registered menbers .
+   * @returns this._sheetMenbers Sheets[]
+   */
+  public getMenbersSheet() {
+    return this._sheetMenbers;
   }
 
   /**
@@ -55,22 +71,7 @@ export class Sheet /*extends AbstractOpen*/ {
     try {
       SpreadsheetApp.openByUrl(this.sheetsUrlForEveryone).insertSheet(eventTitle, this._sheetSize);
     } catch (error) {
-      Logger.log(`エラー：${eventTitle}はシートに挿入できません。${error}`);
+      Logger.log(`warning：${eventTitle}はシートに挿入できません。\n${error}`);
     }
-  }
-
-  /**
-   * - Get
-   */
-  public getSheetData() {
-    // Get Sheet(registered menbers) length = How many people .
-    const allMenbers: number = this._sheetMenbers[1].getLastRow();
-    // Get data of cell from A to B .
-    let getNameFromSheet: string[][] = this._sheetMenbers[1]
-      .getRange(`A1:B${allMenbers}`)
-      .getValues();
-    // copy from sheetMenbers(registered menbers) to sheetsName(to show everyone)
-    this._sheetsName.getRange(`A1:B${allMenbers}`).setValues(getNameFromSheet);
-    // Logger.log(getNameFromSheet);
   }
 }

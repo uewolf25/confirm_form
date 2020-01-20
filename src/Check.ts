@@ -4,8 +4,8 @@ export class Check {
   /**
    * - Student number check .
    * - studentNumber can devide '10' .
-   * @param studentNumber string
-   * @returns whether number can devided by '10' or not .
+   * @param studentNumber Student number .
+   * @returns sumNumber Whether number can devided by '10' or not .
    */
   public numberCheck(studentNumber: string): boolean {
     let sumNumber: number = 0;
@@ -14,6 +14,7 @@ export class Check {
     for (let i = 0; i < charactor.length; i++) {
       sumNumber += Number(charactor[i]);
     }
+    // If it is possible to devide sumNumber by number'10', it is correct student number .
     return sumNumber % 10 == 0 ? true : false;
   }
 }

@@ -21,19 +21,19 @@ export class SetFormAndSheetData {
   }
 
   /**
-   * debugMethod
+   * makeSheet
    * @param
    * @returns
    */
-  public debugMethod() {
+  public makeSheet() {
     /* Insert new sheet */
     this._sheet.setForEveryoneSheetName(this._prop.getEventName);
     this._sheet.insertSheets(this._prop.getEventName);
     /* Get form property */
     this._answeredMenber = this._form.getTitle(this._answeredMenber);
-    // Logger.log(this._answeredMenber);
     /* Read sheet */
     this._design = new AddDesign(this._sheet.getMenbersSheet(), this._sheet.getForEveryoneSheet());
+    this._design.setStudentName();
     this._design.judgeData(this._answeredMenber);
   }
 }

@@ -45,7 +45,8 @@ export class Form /*extends AbstractOpen*/ {
         let studentNumberList: FormItemResponse = itemResponse[numbers];
         let formColumnTitle: string = studentNumberList.getItem().getTitle();
 
-        if (formColumnTitle.match('学生番号') || formColumnTitle.match('学生証番号')) {
+        if (formColumnTitle.match('学生証番号')) {
+          // if (formColumnTitle.match('/*番号/')) {
           let studentNumbers = String(studentNumberList.getResponse());
           // ↓　Probably, it is hard for this editor to judge what class type is .
           // answeredMenber[studentNumberList.getResponse()] = true;
