@@ -21,7 +21,7 @@ dust/
 
 # private informations
 .clasp.json
-appsscript.json
+# appsscript.json
 
 # private Directory
 astah/
