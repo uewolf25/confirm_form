@@ -18,8 +18,8 @@
 ## 準備
 ### 環境変数
 既にスクリプトがある場合は、`.clasp.json`ファイルが生成される必要がないため、scriptIDを控えておいてください。  
-`.clasp-templete.json`というテンプレートを用意しているので、そこにscriptIDを入力してrenameしてください。以下のコマンドを実行。もともとある場合は自身の`.clasp.json`を削除しても構いません。  
-`mv .clasp-templete.json .clasp.json`
+`.clasp-template.json`というテンプレートを用意しているので、そこにscriptIDを入力してrenameしてください。以下のコマンドを実行。もともとある場合は自身の`.clasp.json`を削除しても構いません。  
+`mv .clasp-template.json .clasp.json`
 ### scriptIDの確認の仕方
 GASのスクリプトページの、`「ファイル」 > 「プロジェクトのプロパティ」`のプロパティ欄にスクリプトIDが記載されていると思います。
 
