@@ -9,7 +9,7 @@ export class AddDesign /*extends Zip*/ {
   private _color = {
     red: '#FF0000',
     green: '#00FF00',
-    white: '#FFFFFF'
+    white: '#FFFFFF',
   };
 
   constructor(sheetsName: Sheets) {

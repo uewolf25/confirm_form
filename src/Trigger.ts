@@ -22,7 +22,7 @@ export class Trigger {
   }
 
   /**
-   * - Set trigger to launch automatically .
+   * - Delete trigger to launch automatically .
    */
   private deleteTrigger() {
     for (const trigger of ScriptApp.getProjectTriggers()) {
